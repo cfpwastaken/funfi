@@ -1,0 +1,12 @@
+[Unit]
+Description=FunFi Service
+After=network.target
+
+[Service]
+ExecStart=bash /home/pi/startup.sh
+WorkingDirectory=/home/pi
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
