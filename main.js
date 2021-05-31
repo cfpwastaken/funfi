@@ -38,7 +38,6 @@ function addRandomNames(filename) {
 console.log("Reading lists...");
 
 for(let i in lists) {
-    console.log("Lists[i]: " + list[i]);
     addRandomNames("lists/" + lists[i] + ".list");
 }
 
