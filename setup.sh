@@ -14,10 +14,10 @@ git pull
 echo "Installing npm packages..."
 npm i
 
-echo "Please choose a language (de, en):"
-read language
+echo "Please choose a lists, seperated by spaces (ex. default de):"
+read lists
 
-echo "LANG=$language" > .env
+echo "LISTS=$lists" > .env
 
 echo "Copying files..."
 cp startup.sh ../startup.sh
