@@ -8,31 +8,23 @@ console.log("Chosen lists: " + lists);
 
 var bigList = [];
 
+if(lists.length == 0) {
+    bigList.push("FunFi - No Lists");
+}
+
 function addRandomNames(filename) {
-    // fs.readFile(filename, "utf-8", (err, data) => {
-    //     if(err) {
-    //         callback("FunFi - Error");
-    //         throw err;
-    //     }
+    try {
+        var names = fs.readFileSync(filename, "utf-8");
+        names = names.split("\n");
+        names = names.filter((item) => {
+            return item.indexOf("#") !== 0;       // Remove Comments that start with a #
+        });
 
-    //     var lines = data.split("\n");
-
-    //     lines = lines.filter((item) => {
-    //         return item.indexOf("#") !== 0;
-    //     })
-
-    //     var line = lines[Math.floor(Math.random()*lines.length)];
-
-    //     callback(line);
-    // });
-
-    var names = fs.readFileSync(filename, "utf-8");
-    names = names.split("\n");
-    names = names.filter((item) => {
-        return item.indexOf("#") !== 0;       // Remove Comments that start with a #
-    });
-
-    for (let i in names) { bigList.push(names[i]); }
+        for (let i in names) { bigList.push(names[i]); }
+    } catch(e) {
+        bigList.push("FunFi - Error");
+        throw e;
+    }
 }
 
 console.log("Reading lists...");
