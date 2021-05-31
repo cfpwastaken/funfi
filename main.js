@@ -1,5 +1,8 @@
 const fs = require("fs");
+require("dotenv").config();
 var defaultConf = "interface=wlan0\ndriver=nl80211\nchannel=6\nhw_mode=g\nmacaddr_acl=0\nauth_algs=1\nwpa=2\nwpa_passphrase=\"thisisntevenrealwifidude\"\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP\nrsn_pairwise=CCMP";
+
+const lang = process.env.LANG;
 
 function getRandomName(filename, callback) {
     fs.readFile(filename, "utf-8", (err, data) => {
@@ -16,7 +19,7 @@ function getRandomName(filename, callback) {
     });
 }
 
-getRandomName("names.list", (name) => {
+getRandomName("lang/" + lang + ".list", (name) => {
     console.log(name);
     defaultConf += "\nssid=" + name;
     fs.writeFileSync("funfi.conf", defaultConf);
