@@ -35,17 +35,10 @@ function addRandomNames(filename) {
     for (let i in names) { bigList.push(names[i]); }
 }
 
-async function start() {
-    getRandomName("lang/" + lang + ".list", (name) => {
-        console.log(name);
-        defaultConf += "\nssid=" + name;
-        fs.writeFileSync("funfi.conf", defaultConf);
-    });
-}
-
 console.log("Reading lists...");
 
 for(let i in lists) {
+    console.log("Lists[i]: " + list[i]);
     addRandomNames("lists/" + lists[i] + ".list");
 }
 
